@@ -58,5 +58,8 @@ public class Repartidor extends Usuario {
 		this.estado = EstadoRepartidor.ocupado;
 	}
 	
+	public void liberar() {
+		this.estado=EstadoRepartidor.disponible;
+	}
 	
 }
