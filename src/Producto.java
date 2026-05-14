@@ -30,7 +30,7 @@ public class Producto {
 		this.categoria = categoria;
 	}
 	
-		public String mostrarDatos() {
+		public String NombreProducto() {
 			return nombre + " : " + precio + " €" + categoria;
 		}
 	
