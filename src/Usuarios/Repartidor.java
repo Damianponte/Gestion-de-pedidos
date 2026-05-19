@@ -17,7 +17,7 @@ public class Repartidor extends Usuario {
 		super(nombre, email, telefono);
 		
 		this.zonaReparto = zonaReparto;
-		this.estado = EstadoRepartidor.disponible;
+		this.estado = EstadoRepartidor.DISPONIBLE;
 		
 		pedidosAsignados=new ArrayList<>();
 	}
@@ -55,11 +55,15 @@ public class Repartidor extends Usuario {
 	
 	public void asignarPedido(Pedido pedido) {
 		pedidosAsignados.add(pedido);
-		this.estado = EstadoRepartidor.ocupado;
+		this.estado = EstadoRepartidor.OCUPADO;
 	}
 	
 	public void liberar() {
-		this.estado=EstadoRepartidor.disponible;
+		this.estado=EstadoRepartidor.DISPONIBLE;
 	}
+
+    public void ocupar() {
+        estado = EstadoRepartidor.OCUPADO;
+    }
 	
 }

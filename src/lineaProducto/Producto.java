@@ -36,7 +36,7 @@ public class Producto {
 			return nombre + " : " + precio + " €" + categoria;
 		}
 	
-	public boolean comprobarPedido(Producto p) throws ProductoException {
+	public boolean comprobarProducto(Producto p) throws ProductoException {
 		if(p==null) {
 			throw new ProductoException("El producto no puede ser nulo.");
 		

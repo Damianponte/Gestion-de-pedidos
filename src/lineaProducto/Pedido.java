@@ -17,6 +17,16 @@ public class Pedido {
     private List<Producto> productos = new ArrayList<>();
     
     
+	public Pedido(String id,  Cliente cliente) {
+		super();
+		this.id = id;
+		this.fechaPedido = fechaPedido;
+		this.estado = EstadoPedido.pendiente;
+		this.cliente = cliente;
+	
+		this.productos = new ArrayList<>();
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -78,19 +88,28 @@ public class Pedido {
 	
 	public boolean asignarRepartidor(Repartidor repartidor) {
 	   
-	    if (productos.isEmpty()) return false;
+	    if (productos.isEmpty()) {
+	    	 System.out.println("No se puede asignar sin productos");
+	    	return false;
+	    }
 	    
 	  
-	    if (repartidor.getEstado() != EstadoRepartidor.disponible) return false;
+	    if (repartidor.getEstado() != EstadoRepartidor.disponible) {
+	    	  System.out.println("Repartidor ocupado");
+	    	return false;
+	    }
 	    
-	    if (estado != EstadoPedido.pendiente) return false;
+	    if (estado != EstadoPedido.pendiente) {
+	        System.out.println("El pedido no está pendiente");
+	    	return false;
+	    }
 
 	  
 	    this.repartidor = repartidor;
 	    this.estado = EstadoPedido.reparto;
 	    
 	  
-	    repartidor.setEstado(EstadoRepartidor.ocupado); 
+	    repartidor.ocupar(); 
 	    repartidor.asignarPedido(this);
 	    
 	    return true;
@@ -109,23 +128,7 @@ public class Pedido {
             this.estado = EstadoPedido.cancelado;
         }
     }
-	
-		
-	
-	
-	
-		
-		
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+    
+ 
 	
 }
