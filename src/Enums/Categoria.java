@@ -1,10 +1,10 @@
 package Enums;
 
 public enum Categoria {
-	Bebida,
-	Comida,
-	Postre,
-	otros
+	BEBIDA,
+	COMIDA,
+	POSTRE,
+	OTROS
 
 	
 }
