@@ -7,8 +7,16 @@ public class Producto {
 	private String nombre;
 	private double precio;
 	private Categoria categoria;
-	public Producto(String nombre, double precio, Categoria categoria) {
-	
+	public Producto(String nombre, double precio, Categoria categoria) throws ProductoException {
+		if(nombre== null) {
+			throw new ProductoException("El nombre del producto no puede estar vacío.");
+			
+		}
+		
+		if(precio<=0) {
+			throw new ProductoException("El precio no puede ser negativo,ni cero");
+			
+		}
 		this.nombre = nombre;
 		this.precio = precio;
 		this.categoria = categoria;
@@ -16,21 +24,15 @@ public class Producto {
 	public String getNombre() {
 		return nombre;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	
 	public double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+
 	
 	public String NombreProducto() {
 			return nombre + " : " + precio + " €" + categoria;

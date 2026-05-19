@@ -17,11 +17,11 @@ public class Pedido {
     private List<Producto> productos = new ArrayList<>();
     
     
-	public Pedido(String id,  Cliente cliente) {
+	public Pedido(String id, Cliente cliente, String fechaPedido) {
 		super();
 		this.id = id;
 		this.fechaPedido = fechaPedido;
-		this.estado = EstadoPedido.pendiente;
+		this.estado = EstadoPedido.PENDIENTE;
 		this.cliente = cliente;
 	
 		this.productos = new ArrayList<>();
@@ -94,19 +94,19 @@ public class Pedido {
 	    }
 	    
 	  
-	    if (repartidor.getEstado() != EstadoRepartidor.disponible) {
+	    if (repartidor.getEstado() != EstadoRepartidor.DISPONIBLE) {
 	    	  System.out.println("Repartidor ocupado");
 	    	return false;
 	    }
 	    
-	    if (estado != EstadoPedido.pendiente) {
+	    if (estado != EstadoPedido.PENDIENTE) {
 	        System.out.println("El pedido no está pendiente");
 	    	return false;
 	    }
 
 	  
 	    this.repartidor = repartidor;
-	    this.estado = EstadoPedido.reparto;
+	    this.estado = EstadoPedido.REPARTO;
 	    
 	  
 	    repartidor.ocupar(); 
@@ -115,8 +115,8 @@ public class Pedido {
 	    return true;
 	}
 	public void entregar() {
-        if (estado == EstadoPedido.reparto) {
-            this.estado = EstadoPedido.entregado;
+        if (estado == EstadoPedido.REPARTO) {
+            this.estado = EstadoPedido.ENTREGADO;
             if (repartidor != null) {
                 repartidor.liberar();
             }
@@ -124,8 +124,8 @@ public class Pedido {
     }
 
     public void cancelar() {
-        if (estado == EstadoPedido.pendiente) {
-            this.estado = EstadoPedido.cancelado;
+        if (estado == EstadoPedido.PENDIENTE) {
+            this.estado = EstadoPedido.CANCELADO;
         }
     }
     
