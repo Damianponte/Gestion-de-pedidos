@@ -18,7 +18,7 @@ public class Main {
 	        Cliente cliente = new Cliente("Loida", "loida@email.com", "123");
 	        Repartidor repartidor = new Repartidor("Paco", "Pacopaquito@email.com", "456", "Centro");
 
-	        System.out.println("=== CREAR PEDIDO ===");
+	        System.out.println("CREAR PEDIDO");
 	        System.out.print("ID del pedido: ");
 	        String id = sc.nextLine();
 	        System.out.print("indique la fecha ");
@@ -28,7 +28,7 @@ public class Main {
 	        String respuesta;
 
 	        do {
-	            System.out.println("\n--- AÑADIR PRODUCTO ---");
+	            System.out.println("AÑADIR PRODUCTO");
 	            System.out.print("Nombre: ");
 	            String nombre = sc.nextLine();
 
@@ -71,7 +71,7 @@ public class Main {
 
 	        		pedido.calcularTotal();
 
-	        System.out.println("\nAsignando repartidor...");
+	        System.out.println("Asignando repartidor!");
 	        if (pedido.asignarRepartidor(repartidor)) {
 	            System.out.println("Repartidor asignado");
 	        } else {
@@ -86,7 +86,7 @@ public class Main {
 	         
 	        }
 
-	        System.out.println("\n=== ESTADO FINAL ===");
+	        System.out.println(" ESTADO FINAL");
 	        System.out.println("Pedido: " + pedido.getEstado());
 	        System.out.println("Repartidor: " + repartidor.getEstado());
 
