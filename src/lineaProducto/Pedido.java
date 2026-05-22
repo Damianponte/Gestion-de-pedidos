@@ -17,8 +17,14 @@ public class Pedido {
     private List<Producto> productos = new ArrayList<>();
     
     
-	public Pedido(String id, Cliente cliente, String fechaPedido) {
+	public Pedido(String id, Cliente cliente) {
 		super();
+		if (id==null) {
+			throw new IllegalArgumentException("El ID del pedido no puede ser nulo");
+		}
+		if (cliente==null) {
+			if (cliente == null) throw new IllegalArgumentException("El pedido debe tener un cliente asociado");
+		}
 		this.id = id;
 		this.fechaPedido = fechaPedido;
 		this.estado = EstadoPedido.PENDIENTE;
@@ -59,6 +65,7 @@ public class Pedido {
 		
 		for(Producto p:productos) {
 			if (p.getNombre().equalsIgnoreCase(producto.getNombre())) {
+				
 	            existe = true;
 	            break;
 	        }
@@ -75,7 +82,7 @@ public class Pedido {
 		
 	}
 	
-	public void CalcularTotal() {
+	public void calcularTotal() {
 		double total=0.0;
 		
 		for(Producto p:productos) {
@@ -120,12 +127,18 @@ public class Pedido {
             if (repartidor != null) {
                 repartidor.liberar();
             }
+            System.out.println("El pedido a sido entregado.");
+        } else {
+            System.out.println("El pedido no está en reparto, no se puede entregar.");
         }
     }
 
     public void cancelar() {
         if (estado == EstadoPedido.PENDIENTE) {
             this.estado = EstadoPedido.CANCELADO;
+            System.out.println("Pedido cancelado.");
+        } else {
+            System.out.println("No se puede cancelar un pedido en estado: " + estado);
         }
     }
     

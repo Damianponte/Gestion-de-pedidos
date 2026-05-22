@@ -17,8 +17,8 @@ public class Cliente extends Usuario {
 
 
 
-	public Pedido crearPedido() {
-		Pedido p=new Pedido ();
+	public Pedido crearPedido(String idPedido) {
+		Pedido p=new Pedido (idPedido,this);
 		pedidos.add(p);
 		return p;
 	}
@@ -31,3 +31,5 @@ public class Cliente extends Usuario {
 
 
 }
+
+

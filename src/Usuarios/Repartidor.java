@@ -13,9 +13,8 @@ public class Repartidor extends Usuario {
 	private ArrayList<Pedido>pedidosAsignados;
 	
 	
-	public Repartidor(String nombre, String email, String telefono) {
+	public Repartidor(String nombre, String email, String telefono,String zonaReparto) {
 		super(nombre, email, telefono);
-		
 		this.zonaReparto = zonaReparto;
 		this.estado = EstadoRepartidor.DISPONIBLE;
 		
