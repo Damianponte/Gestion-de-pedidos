@@ -12,13 +12,14 @@ public class Cliente extends Usuario {
 	
 	public Cliente(String nombre, String email, String telefono) {
 		super(nombre, email, telefono);
+		this.pedidos = new ArrayList<>();
 		
 	}
 
 
 
-	public Pedido crearPedido(String idPedido) {
-		Pedido p=new Pedido (idPedido,this);
+	public Pedido crearPedido(String idPedido,String fechaPedido) {
+		Pedido p=new Pedido (idPedido,this,fechaPedido);
 		pedidos.add(p);
 		return p;
 	}

@@ -15,16 +15,17 @@ public class Main {
 
 	        Scanner sc = new Scanner(System.in);
 
-	        Cliente cliente = new Cliente("Juan", "juan@email.com", "123");
-	        Repartidor repartidor = new Repartidor("Luis", "luis@email.com", "456", "Centro");
+	        Cliente cliente = new Cliente("Loida", "loida@email.com", "123");
+	        Repartidor repartidor = new Repartidor("Paco", "Pacopaquito@email.com", "456", "Centro");
 
 	        System.out.println("=== CREAR PEDIDO ===");
 	        System.out.print("ID del pedido: ");
 	        String id = sc.nextLine();
+	        System.out.print("indique la fecha ");
+	        String fecha = sc.nextLine();
 
-	        Pedido pedido = cliente.crearPedido(id);
-
-	        int opcion;
+	        Pedido pedido = cliente.crearPedido(id,fecha);
+	        String respuesta;
 
 	        do {
 	            System.out.println("\n--- AÑADIR PRODUCTO ---");
@@ -33,7 +34,7 @@ public class Main {
 
 	            System.out.print("Precio: ");
 	            double precio = sc.nextDouble();
-	            sc.nextLine(); // limpiar buffer
+	            sc.nextLine(); 
 
 	            System.out.println("Categoría:");
 	            System.out.println("1. BEBIDA");
@@ -63,11 +64,10 @@ public class Main {
 	            Producto p = new Producto(nombre, precio, categoria);
 	            pedido.AgregarProducto(p);
 
-	            System.out.print("¿Añadir otro producto? (1=SI / 0=NO): ");
-	            opcion = sc.nextInt();
-	            sc.nextLine();
+	            System.out.print("¿Añadir otro producto? (S/N) ");
+	            respuesta = sc.nextLine().toUpperCase(); 
 
-	        } while (opcion == 1);
+	        } while (respuesta.equals("S"));
 
 	        		pedido.calcularTotal();
 
@@ -78,12 +78,12 @@ public class Main {
 	            System.out.println("No se pudo asignar");
 	        }
 
-	        System.out.print("\n¿Entregar pedido? (1=SI / 0=NO): ");
-	        int entregar = sc.nextInt();
+	        System.out.print("\n¿Entregar pedido? (s/N): ");
+	        String entregar = sc.nextLine().toUpperCase();
 
-	        if (entregar == 1) {
+	        if (entregar.equals("S")) {
 	            pedido.entregar();
-	            System.out.println("Pedido entregado");
+	         
 	        }
 
 	        System.out.println("\n=== ESTADO FINAL ===");

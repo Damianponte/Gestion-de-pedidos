@@ -17,13 +17,13 @@ public class Pedido {
     private List<Producto> productos = new ArrayList<>();
     
     
-	public Pedido(String id, Cliente cliente) {
+	public Pedido(String id, Cliente cliente,String fechaPedido) {
 		super();
 		if (id==null) {
 			throw new IllegalArgumentException("El ID del pedido no puede ser nulo");
 		}
 		if (cliente==null) {
-			if (cliente == null) throw new IllegalArgumentException("El pedido debe tener un cliente asociado");
+			 throw new IllegalArgumentException("El pedido debe tener un cliente asociado");
 		}
 		this.id = id;
 		this.fechaPedido = fechaPedido;
@@ -116,7 +116,7 @@ public class Pedido {
 	    this.estado = EstadoPedido.REPARTO;
 	    
 	  
-	    repartidor.ocupar(); 
+	  
 	    repartidor.asignarPedido(this);
 	    
 	    return true;

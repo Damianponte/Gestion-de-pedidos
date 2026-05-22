@@ -7,6 +7,7 @@ public class Producto {
 	private String nombre;
 	private double precio;
 	private Categoria categoria;
+	
 	public Producto(String nombre, double precio, Categoria categoria) throws ProductoException {
 		if(nombre== null) {
 			throw new ProductoException("El nombre del producto no puede estar vacío.");
@@ -35,7 +36,7 @@ public class Producto {
 
 	
 	public String NombreProducto() {
-			return nombre + " : " + precio + " €" + categoria;
+			return nombre + " : " + precio + " €" + "por" + categoria;
 		}
 	
 	public boolean comprobarProducto(Producto p) throws ProductoException {
@@ -43,9 +44,9 @@ public class Producto {
 			throw new ProductoException("El producto no puede ser nulo.");
 		
 		}
-		if(this.nombre == null && this.nombre.equalsIgnoreCase(p.getNombre())) {
+		if(this.nombre != null && this.nombre.equalsIgnoreCase(p.getNombre())) {
 			System.out.println("ya hai un producto que se llama asi");
-			return false;
+			return true;
 		
 		}
 		return false;

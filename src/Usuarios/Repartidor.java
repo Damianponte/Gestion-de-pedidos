@@ -27,19 +27,14 @@ public class Repartidor extends Usuario {
 	}
 
 
-	public void setZonaReparto(String zonaReparto) {
-		this.zonaReparto = zonaReparto;
-	}
-
+	
 
 	public EstadoRepartidor getEstado() {
 		return estado;
 	}
 
 
-	public void setEstado(EstadoRepartidor estado) {
-		this.estado = estado;
-	}
+	
 
 
 	public ArrayList<Pedido> getPedidosAsignados() {
