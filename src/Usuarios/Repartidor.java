@@ -27,14 +27,10 @@ public class Repartidor extends Usuario {
 	}
 
 
-	
-
 	public EstadoRepartidor getEstado() {
 		return estado;
 	}
 
-
-	
 
 
 	public ArrayList<Pedido> getPedidosAsignados() {
