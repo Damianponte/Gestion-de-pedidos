@@ -59,5 +59,6 @@ public class Repartidor extends Usuario {
     public void ocupar() {
         estado = EstadoRepartidor.OCUPADO;
     }
+   
 	
 }
