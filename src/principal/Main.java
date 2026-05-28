@@ -1,5 +1,6 @@
 package principal;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Enums.Categoria;
@@ -13,59 +14,49 @@ public class Main {
 
 	 public static void main(String[] args) throws ProductoException {
 
-	        Scanner sc = new Scanner(System.in);
+	        Scanner entrada = new Scanner(System.in);
 
 	        Cliente cliente = new Cliente("Loida", "loida@email.com", "123");
 	        Repartidor repartidor = new Repartidor("Paco", "Pacopaquito@email.com", "456", "Centro");
+	        
+	        
+	        ArrayList<Producto>catalogo =new ArrayList<>();
+	        catalogo.add(new Producto("Pizza", 10, Categoria.COMIDA));
+	        catalogo.add(new Producto("Refresco", 2, Categoria.BEBIDA));
+	        catalogo.add(new Producto("Helado", 3, Categoria.POSTRE));
+	        catalogo.add(new Producto("hamburguesa", 5, Categoria.COMIDA));
+	        catalogo.add(new Producto("agua", 1.5, Categoria.BEBIDA));
+	        catalogo.add(new Producto("tarta",3.5 , Categoria.POSTRE));
+	        
+	        Pedido pedido = cliente.crearPedido();
+	        
+	        System.out.println("Pedido creado con ID: " + pedido.getId());
+	        System.out.println("Fecha: " + pedido.getFechaPedido());
+	        
+	 
 
-	        System.out.println("CREAR PEDIDO");
-	        System.out.print("ID del pedido: ");
-	        String id = sc.nextLine();
-	        System.out.print("indique la fecha ");
-	        String fecha = sc.nextLine();
-
-	        Pedido pedido = cliente.crearPedido(id,fecha);
+	   
 	        String respuesta;
 
 	        do {
-	            System.out.println("AÑADIR PRODUCTO");
-	            System.out.print("Nombre: ");
-	            String nombre = sc.nextLine();
+	        	 System.out.println("\n--- CATÁLOGO ---");
 
-	            System.out.print("Precio: ");
-	            double precio = sc.nextDouble();
-	            sc.nextLine(); 
-
-	            System.out.println("Categoría:");
-	            System.out.println("1. BEBIDA");
-	            System.out.println("2. COMIDA");
-	            System.out.println("3. POSTRE");
-	            System.out.print("Elige opción: ");
-	            int cat = sc.nextInt();
-	            sc.nextLine();
-
-	            Categoria categoria;
-
-	            switch (cat) {
-	                case 1:
-	                    categoria = Categoria.BEBIDA;
-	                    break;
-	                case 2:
-	                    categoria = Categoria.COMIDA;
-	                    break;
-	                case 3:
-	                    categoria = Categoria.POSTRE;
-	                    break;
-	                default:
-	                    System.out.println("Opción inválida, se asigna COMIDA");
-	                    categoria = Categoria.COMIDA;
+	             for (int i = 0; i < catalogo.size(); i++) {
+	                 System.out.println((i + 1) + ". " + catalogo.get(i));
+	             } 
+	             
+	            System.out.println("eleje producto:");
+	           int opcion=entrada.nextInt()-1;
+	           entrada.nextLine();
+	           
+	           if (opcion >= 0 && opcion < catalogo.size()) {
+	                pedido.AgregarProducto(catalogo.get(opcion));
 	            }
 
-	            Producto p = new Producto(nombre, precio, categoria);
-	            pedido.AgregarProducto(p);
+	            System.out.print("¿Añadir otro producto? (S/N): ");
+	            respuesta = entrada.nextLine().toUpperCase();
 
-	            System.out.print("¿Añadir otro producto? (S/N) ");
-	            respuesta = sc.nextLine().toUpperCase(); 
+	           
 
 	        } while (respuesta.equals("S"));
 
@@ -73,13 +64,13 @@ public class Main {
 
 	        System.out.println("Asignando repartidor!");
 	        if (pedido.asignarRepartidor(repartidor)) {
-	            System.out.println("Repartidor asignado");
+	            System.out.println("Repartidor asignado: " + repartidor.getNombre());
 	        } else {
 	            System.out.println("No se pudo asignar");
 	        }
 
 	        System.out.print("\n¿Entregar pedido? (s/N): ");
-	        String entregar = sc.nextLine().toUpperCase();
+	        String entregar = entrada.nextLine().toUpperCase();
 
 	        if (entregar.equals("S")) {
 	            pedido.entregar();
@@ -90,6 +81,6 @@ public class Main {
 	        System.out.println("Pedido: " + pedido.getEstado());
 	        System.out.println("Repartidor: " + repartidor.getEstado());
 
-	        sc.close();
+	        entrada.close();
 	    }
 	}
