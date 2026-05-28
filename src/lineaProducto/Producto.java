@@ -35,9 +35,7 @@ public class Producto {
 	}
 
 	
-	public String NombreProducto() {
-			return nombre + " : " + precio + " €" + "por" + categoria;
-		}
+	
 	
 	public boolean comprobarProducto(Producto p) throws ProductoException {
 		if(p==null) {
