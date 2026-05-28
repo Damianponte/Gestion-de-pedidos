@@ -1,4 +1,5 @@
 package lineaProducto;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,14 +11,14 @@ import excepciones.ProductoException;
 
 public class Pedido {
 	private String id;
-    private String fechaPedido;
+    private LocalDate fechaPedido;
     private EstadoPedido estado;
     private Cliente cliente;
     private Repartidor repartidor;
     private List<Producto> productos = new ArrayList<>();
     
     
-	public Pedido(String id, Cliente cliente,String fechaPedido) {
+	public Pedido(String id, Cliente cliente){
 		super();
 		if (id==null) {
 			throw new IllegalArgumentException("El ID del pedido no puede ser nulo");
@@ -26,7 +27,7 @@ public class Pedido {
 			 throw new IllegalArgumentException("El pedido debe tener un cliente asociado");
 		}
 		this.id = id;
-		this.fechaPedido = fechaPedido;
+		this.fechaPedido = LocalDate.now();
 		this.estado = EstadoPedido.PENDIENTE;
 		this.cliente = cliente;
 	
@@ -37,10 +38,11 @@ public class Pedido {
 		return id;
 	}
 	
-	public String getFechaPedido() {
+	
+	public LocalDate getFechaPedido() {
 		return fechaPedido;
 	}
-	
+
 	public EstadoPedido getEstado() {
 		return estado;
 	}
