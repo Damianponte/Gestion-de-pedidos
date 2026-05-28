@@ -8,7 +8,7 @@ import lineaProducto.Pedido;
 public class Cliente extends Usuario {
 
 	private List<Pedido> pedidos = new ArrayList<>();
-	
+	 private static int contadorPedidos = 1;
 	
 	public Cliente(String nombre, String email, String telefono) {
 		super(nombre, email, telefono);
@@ -18,8 +18,9 @@ public class Cliente extends Usuario {
 
 
 
-	public Pedido crearPedido(String idPedido,String fechaPedido) {
-		Pedido p=new Pedido (idPedido,this,fechaPedido);
+	public Pedido crearPedido() {
+		 String id = "PED" + contadorPedidos++;
+		Pedido p=new Pedido (id,this);
 		pedidos.add(p);
 		return p;
 	}
