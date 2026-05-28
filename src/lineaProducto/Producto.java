@@ -15,7 +15,7 @@ public class Producto {
 		}
 		
 		if(precio<=0) {
-			throw new ProductoException("El precio no puede ser negativo,ni cero");
+			throw new ProductoException("El precio debe ser mayor a cero");
 			
 		}
 		this.nombre = nombre;
